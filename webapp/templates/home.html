@@ -1,9 +1,17 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
+{% comment %} {% load static %} {% endcomment %}
+
+<link>
+
+</link>
 
 <html>
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Home{% endblock %}</title>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
 </head>
 
 <body>
@@ -18,14 +26,25 @@
         <li><a href="#section3" >Matchs</a></li>
       </ul>
     </nav>
-    <h1>NBA Players List</h1>
-      {% for player in players_data.data %} 
-        <div style = "border:grey; border-width:5px; border-style:solid; width:250px">
-          <strong><br>Prénom:</strong> {{ player.first_name }}
-          <strong><br>Nom:</strong> {{ player.last_name }}<br><br>
-        </div>
-        <br>
-      {% endfor %}
+    <h2>NBA Players List</h1>
+    <div class="row">
+        {% for player in players_data.data %}
+          <div class="col-sm-2">
+            <div class="card text-white bg-primary border-light mb-3" style="width: 14rem;">
+              <div class="card-body">
+                <strong>Prénom:</strong> {{ player.first_name }}<br>
+                <strong>Nom:</strong> {{ player.last_name }}
+              </div>
+            </div>
+            <br>  
+          </div>
+        {% endfor %}
+    </div>
+    {% if players_data.meta.next_page %}
+      <a href="?page={{ players_data.meta.current_page|add:-1 }}">Previous Page</a>
+      <a href="?page={{ players_data.meta.current_page|add:1 }}">Next Page</a>
+    {% endif %} 
+
     <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
   {% else %}
     <p>Tu n'es pas connecté. Tu ne peux pas continuer sans être connecté.</p>
