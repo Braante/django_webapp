@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+
+<body>
+  {% block content %}
+  {% if user.is_authenticated %}
+    <h1>Basketland</h1>
+    <nav id="nav">
+      <ul>
+        <li>MENU</li>
+        <li><a href="#section1" >Joueurs</a></li>
+        <li><a href="#section2" >Équipes</a></li>
+        <li><a href="#section3" >Matchs</a></li>
+      </ul>
+    </nav>
+    <h1>NBA Players List</h1>
+      {% for player in players_data.data %} 
+        <div style = "border:grey; border-width:5px; border-style:solid; width:250px">
+          <strong><br>Prénom:</strong> {{ player.first_name }}
+          <strong><br>Nom:</strong> {{ player.last_name }}<br><br>
+        </div>
+        <br>
+      {% endfor %}
+    <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+  {% else %}
+    <p>Tu n'es pas connecté. Tu ne peux pas continuer sans être connecté.</p>
+    <a href="{% url 'login' %}">Se connecter</a>
+    <a href="{% url 'signup' %}">S'inscrire</a>
+  {% endif %}
+  {% endblock %}
+</body>
+</html>
