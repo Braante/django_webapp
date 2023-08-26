@@ -1,0 +1,66 @@
+Tous les tests échoués pour un meilleur rendu visuel avec dynamisme front et/ou back
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TEST D'UNE NAVBAR DYNAMIQUE POUR N'AVOIR QU'UNE SEULE PAGE
+
+<div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglePlayerContent" aria-controls="navbarTogglePlayerContent" aria-expanded="true" aria-label="Toggle navigation">
+        Players
+      </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleTeamContent" aria-controls="navbarToggleTeamContent" aria-expanded="true" aria-label="Toggle navigation">
+        Teams
+      </button>
+    </nav>
+    <div class="collapse" id="navbarTogglePlayerContent">
+      <div class="bg-dark p-4">
+        <div class="row">
+          {% for player in playersData.data %}
+            <div class="col-sm-2">
+              <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
+                <div class="card-body">
+                  <strong>Prénom:</strong> {{ player.first_name }}<br>
+                  <strong>Nom:</strong> {{ player.last_name }}
+                </div>
+              </div>
+              <br>  
+            </div>
+          {% endfor %}
+        </div>
+      {% if playersData.meta.next_page %}
+        <a href="?page={{ playersData.meta.current_page|add:-1 }}">Previous Page</a>
+        <a href="?page={{ playersData.meta.current_page|add:1 }}">Next Page</a>
+      {% endif %}
+    </div>
+    <div class="collapse" id="navbarToggleTeamContent">
+      <div class="bg-white p-4">
+        <div class="row">
+          {% for team in teamsData.data %}
+            <div class="col-sm-2">
+              <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
+                <div class="card-body">
+                  <strong>Nom:</strong> {{ team.full_name }}<br>
+                </div>
+              </div>
+              <br>  
+            </div>
+          {% endfor %}
+
+          {% if teamsData.meta.next_page %}
+          <a href="?page={{ teamsData.meta.current_page|add:-1 }}">Previous Page</a>
+          <a href="?page={{ teamsData.meta.current_page|add:1 }}">Next Page</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  ~~~~~~~~~~
+
+<form action="players/" method="POST">
+    <button type="submit" name="player">Players</button>
+    <button type="submit" name="team">Teams</button>
+</form>

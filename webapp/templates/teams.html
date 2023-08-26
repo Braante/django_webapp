@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Teams{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    {% block content %}
+    {% if user.is_authenticated %}
+
+    <h1>Basketland</h1>
+    <br>
+
+    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'players' %}'">
+      Player
+    </button>
+
+    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'teams' %}'">
+      Teams
+    </button>
+
+    <br><br>
+
+    <div class="row">
+        {% for team in teamsData.data %}
+          <div class="col-sm-2">
+            <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
+              <div class="card-body">
+                <strong>Nom:</strong> {{ team.full_name }}<br>
+              </div>
+            </div>
+            <br>  
+          </div>
+        {% endfor %}
+
+        {% if teamsData.meta.next_page %}
+        <a href="?page={{ teamsData.meta.current_page|add:-1 }}">Previous Page</a>
+        <a href="?page={{ teamsData.meta.current_page|add:1 }}">Next Page</a>
+        {% endif %}
+      </div>
+
+    <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+    {% else %}
+      <p>Tu n'es pas connecté. Tu ne peux pas continuer sans être connecté.</p>
+      <a href="{% url 'login' %}">Se connecter</a>
+      <a href="{% url 'signup' %}">S'inscrire</a>
+    {% endif %}
+  
+    {% endblock %}
+</body>
+</html>

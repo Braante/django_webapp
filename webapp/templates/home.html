@@ -2,10 +2,6 @@
 {% load bootstrap5 %}
 {% comment %} {% load static %} {% endcomment %}
 
-<link>
-
-</link>
-
 <html>
 <head>
   <meta charset="utf-8">
@@ -18,55 +14,14 @@
   {% block content %}
   {% if user.is_authenticated %}
     <h1>Basketland</h1>
-    <nav id="nav">
-      <ul>
-        <li>MENU</li>
-        <li><a href="#section1" >Joueurs</a></li>
-        <li><a href="#section2" >Équipes</a></li>
-        <li><a href="#section3" >Matchs</a></li>
-      </ul>
-    </nav>
-    <br>
-    <h2>NBA Players</h2>
-    <div class="row">
-        {% for player in playersData.data %}
-          <div class="col-sm-2">
-            <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
-              <div class="card-body">
-                <strong>Prénom:</strong> {{ player.first_name }}<br>
-                <strong>Nom:</strong> {{ player.last_name }}
-              </div>
-            </div>
-            <br>  
-          </div>
-        {% endfor %}
-    </div>
-    {% if playersData.meta.next_page %}
-      <a href="?page={{ playersData.meta.current_page|add:-1 }}">Previous Page</a>
-      <a href="?page={{ playersData.meta.current_page|add:1 }}">Next Page</a>
-    {% endif %}
 
-    <br><br><br>
-    
-    <h2>NBA Teams</h2>
-    <div class="row">
-      {% for team in teamsData.data %}
-        <div class="col-sm-2">
-          <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
-            <div class="card-body">
-              <strong>Nom:</strong> {{ team.full_name }}<br>
-            </div>
-          </div>
-          <br>  
-        </div>
-      {% endfor %}
-    </div>
-    {% if teamsData.meta.next_page %}
-      <a href="?page={{ teamsData.meta.current_page|add:-1 }}">Previous Page</a>
-      <a href="?page={{ teamsData.meta.current_page|add:1 }}">Next Page</a>
-    {% endif %}
+    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'players' %}'">
+      Player
+    </button>
 
-    <h2>AAA</h1>
+    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'teams' %}'">
+      Teams
+    </button>
 
     <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
   {% else %}
