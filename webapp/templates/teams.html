@@ -37,11 +37,7 @@
             <br>  
           </div>
         {% endfor %}
-
-        {% if teamsData.meta.next_page %}
-        <a href="?page={{ teamsData.meta.current_page|add:-1 }}">Previous Page</a>
-        <a href="?page={{ teamsData.meta.current_page|add:1 }}">Next Page</a>
-        {% endif %}
+        
       </div>
 
     <p><a href="{% url 'logout' %}">Se déconnecter</a></p>

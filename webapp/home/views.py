@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
 import requests
 
@@ -17,13 +17,13 @@ def players(request):
     response = f"https://www.balldontlie.io/api/v1/players?page={page}"
     rep = requests.get(response)
     playersData = rep.json()
-    return render(request, 'players.html', {'playersData': playersData})
+    return render(request, 'home.html', {'playersData': playersData})
 
 def playersData(request, playerId):
     response = f"https://www.balldontlie.io/api/v1/players/{playerId}"
     rep = requests.get(response)
     playerData = rep.json()
-    return render(request, 'players.html', {'playerData': playerData})
+    return render(request, 'home.html', {'playerData': playerData})
 
 def teams(request):
     page = request.GET.get('page', 1)
