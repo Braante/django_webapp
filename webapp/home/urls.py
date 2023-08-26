@@ -5,5 +5,6 @@ from .import views
 
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
-    path('', views.players_list, name="home"),
+    path('', views.teams, name="home"),
+    path('', views.players, name="home"),
 ]

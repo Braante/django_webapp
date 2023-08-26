@@ -12,16 +12,28 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
-def players_list(request):
+def players(request):
     page = request.GET.get('page', 1)
     response = f"https://www.balldontlie.io/api/v1/players?page={page}"
     rep = requests.get(response)
-    players_data = rep.json()
-    return render(request, 'home.html', {'players_data': players_data})
+    playersData = rep.json()
+    return render(request, 'home.html', {'playersData': playersData})
 
-def players_infos(request, player_id):
-    response = f"https://www.balldontlie.io/api/v1/players/{player_id}"
+def playersData(request, playerId):
+    response = f"https://www.balldontlie.io/api/v1/players/{playerId}"
     rep = requests.get(response)
-    player_data = rep.json()
-    return render(request, 'players_infos.html', {'player_data': player_data})
+    playerData = rep.json()
+    return render(request, 'home.html', {'playerData': playerData})
 
+def teams(request):
+    page = request.GET.get('page', 1)
+    response = f"https://www.balldontlie.io/api/v1/teams?page={page}"
+    rep = requests.get(response)
+    teamsData = rep.json()
+    return render(request, 'home.html', {'teamsData': teamsData})
+
+def teamsData(request, teamId):
+    response = f"https://www.balldontlie.io/api/v1/teams/{teamId}"
+    rep = requests.get(response)
+    teamData = rep.json()
+    return render(request, 'home.html', {'teamData': teamData})
