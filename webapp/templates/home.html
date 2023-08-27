@@ -13,20 +13,38 @@
     {% block content %}
     {% if user.is_authenticated %}
 
-    <h1>Basketland</h1>
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <h1>Basketland</h1>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+
+    
     <br>
 
-    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'players' %}'">
-      Player
-    </button>
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
 
-    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'teams' %}'">
-      Teams
-    </button>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-light" onclick="location.href='{% url 'players' %}'">
+          Player
+        </button>
+        <button type="button" class="btn btn-light" onclick="location.href='{% url 'teams' %}'">
+          Teams
+        </button>
+        <button type="button" class="btn btn-light" onclick="location.href='{% url 'games' %}'">
+          Games
+        </button>
+      </div>
 
-    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'games' %}'">
-      Games
-    </button>
+      <div class="col-sm-4">
+      </div>
+    </div>
 
     <br><br>
 
@@ -45,17 +63,42 @@
           <br>  
         </div>
       {% endfor %}
-  </div>
-  {% if playersData.meta.next_page %}
-    <a href="?page={{ playersData.meta.current_page|add:-1 }}">Previous Page</a>
-    <a href="?page={{ playersData.meta.current_page|add:1 }}">Next Page</a>
-  {% endif %}
+    </div>
 
-  <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+    <div class="row">
+      {% if playersData.meta.next_page %}
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-info" onclick="location.href='?page={{ playersData.meta.current_page|add:-1 }}'">
+            Previous Page
+          </button>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-info" onclick="location.href='?page={{ playersData.meta.current_page|add:1 }}'">
+            Next Page
+          </button>
+        </div>
+      {% endif %}
+    </div>
+
+    <br><br>
+    <div class="row">
+      <button type="button" class="btn btn-danger" onclick="location.href='{% url 'logout' %}'">
+        Se déconnecter
+      </button>
+    </div>
+  
   {% else %}
-    <p>Tu n'es pas connecté. Tu ne peux pas continuer sans être connecté.</p>
-    <a href="{% url 'login' %}">Se connecter</a>
-    <a href="{% url 'signup' %}">S'inscrire</a>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <h3 style="text-align: center;">Tu n'es pas connecté. <br> Tu ne peux pas continuer sans être connecté.</h3>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="location.href='{% url 'login' %}'">Se connexter</button>
+    <button type="button" class="btn btn-info" onclick="location.href='{% url 'signup' %}'">S'inscrire</button>
   {% endif %}
 
   {% endblock %}
