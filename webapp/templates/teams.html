@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Teams{% endblock %}</title>
+    <title>{% block title %}Equipes{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -32,13 +32,13 @@
 
       <div class="col-sm-4">
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'players' %}'">
-          Player
+          Joueurs
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'teams' %}'">
-          Teams
+          Equipes
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'games' %}'">
-          Games
+          Matchs
         </button>
       </div>
 
@@ -55,7 +55,7 @@
               <div class="card-body">
                 <strong>Nom:</strong> {{ team.full_name }}<br>
                 <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutTeams' team.id %}'">
-                  More information
+                  Plus d'informations
                 </button>
               </div>
             </div>

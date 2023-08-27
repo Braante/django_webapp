@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Players{% endblock %}</title>
+    <title>{% block title %}Joueurs{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -32,13 +32,13 @@
 
       <div class="col-sm-4">
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'players' %}'">
-          Player
+          Joueurs
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'teams' %}'">
-          Teams
+          Equipes
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'games' %}'">
-          Games
+          Matchs
         </button>
       </div>
 
@@ -56,7 +56,7 @@
               <strong>Prénom:</strong> {{ player.first_name }}<br>
               <strong>Nom:</strong> {{ player.last_name }}
               <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutPlayers' player.id %}'">
-                More information
+                Plus d'informations
               </button>
             </div>
           </div>
@@ -71,12 +71,12 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-2">
           <button type="button" class="btn btn-info" onclick="location.href='?page={{ playersData.meta.current_page|add:-1 }}'">
-            Previous Page
+            Page précédente
           </button>
         </div>
         <div class="col-sm-2">
           <button type="button" class="btn btn-info" onclick="location.href='?page={{ playersData.meta.current_page|add:1 }}'">
-            Next Page
+            Page suivante
           </button>
         </div>
       {% endif %}

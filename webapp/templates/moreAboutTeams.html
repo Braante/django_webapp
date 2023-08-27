@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}More about teams{% endblock %}</title>
+    <title>{% block title %}Plus concernant l'équipe{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -32,13 +32,13 @@
 
       <div class="col-sm-4">
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'players' %}'">
-          Player
+          Joueurs
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'teams' %}'">
-          Teams
+          Equipes
         </button>
         <button type="button" class="btn btn-light" onclick="location.href='{% url 'games' %}'">
-          Games
+          Matchs
         </button>
       </div>
 
@@ -75,7 +75,7 @@
                     <strong>Prénom:</strong> {{ player.first_name }}<br>
                     <strong>Nom:</strong> {{ player.last_name }}
                     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutPlayers' player.id %}'">
-                        More information
+                        Plus d'informations
                     </button>
                     </div>
                 </div>

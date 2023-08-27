@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}More about games{% endblock %}</title>
+    <title>{% block title %}Plus concernant le match{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -32,13 +32,13 @@
   
         <div class="col-sm-4">
           <button type="button" class="btn btn-light" onclick="location.href='{% url 'players' %}'">
-            Player
+            Joueurs
           </button>
           <button type="button" class="btn btn-light" onclick="location.href='{% url 'teams' %}'">
-            Teams
+            Equipes
           </button>
           <button type="button" class="btn btn-light" onclick="location.href='{% url 'games' %}'">
-            Games
+            Matchs
           </button>
         </div>
   
@@ -53,7 +53,7 @@
           <div class="card text-white bg-primary border-light mb-3" style="width: 16rem;">
             <div class="card-body">
               <strong>Date:</strong> {{ gameData.date }}<br>
-              <strong>Score équipe - home:</strong> {{ gameData.home_team_score }}<br>
+              <strong>Score équipe - domicile:</strong> {{ gameData.home_team_score }}<br>
               <strong>Score équipe - visiteur:</strong> {{ gameData.visitor_team_score }}<br>
               <strong>Saison:</strong> {{ gameData.season }}<br>
               <strong>Période:</strong> {{ gameData.period }}<br>
@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <strong>Equipe:</strong> {{ gameData.home_team.full_name }}
                         <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutTeams' gameData.home_team.id %}'">
-                            More information
+                            Plus d'informations
                         </button>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="card-body">
                     <strong>Equipe:</strong> {{ gameData.visitor_team.full_name }}
                     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutTeams' gameData.visitor_team.id %}'">
-                        More information
+                        Plus d'informations
                     </button>
                 </div>
             </div>
