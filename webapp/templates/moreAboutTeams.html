@@ -19,19 +19,43 @@
     <br><br>
 
     <div class="row">
-        <div class="col-sm-2">
-          <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
-            <div class="card-body">
-              <strong>Abbréviation:</strong> {{ teamData.abbreviation }}<br>
-              <strong>Ville:</strong> {{ teamData.city }}<br>
-              <strong>Conférence:</strong> {{ teamData.conference }}<br>
-              <strong>Division:</strong> {{ teamData.division }}<br>
-              <strong>Nom complet:</strong> {{ teamData.full_name }}<br>
-              <strong>Nom:</strong> {{ teamData.name }}<br>
-            </div>
-          </div>
-          <br>  
+        <div class="col-sm-4">
+
         </div>
+        <div class="col-sm-4">
+            <div class="card text-white bg-primary border-light mb-3" style="width: 18rem;">
+                <div class="card-body">
+                  <strong>Abbréviation:</strong> {{ teamData.abbreviation }}<br>
+                  <strong>Ville:</strong> {{ teamData.city }}<br>
+                  <strong>Conférence:</strong> {{ teamData.conference }}<br>
+                  <strong>Division:</strong> {{ teamData.division }}<br>
+                  <strong>Nom complet:</strong> {{ teamData.full_name }}<br>
+                  <strong>Nom:</strong> {{ teamData.name }}<br>
+                </div>
+              </div>
+              <br>  
+        </div>
+  </div>
+  <div class="row">
+    {% for player in playersData.data %}
+        {% comment %} <p> {{ player.team.id }} W {{ teamData.id }} </p> {% endcomment %}
+        {% if player.team.id == teamData.id %}
+            <div class="col-sm-2">
+                <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
+                    <div class="card-body">
+                    <strong>Prénom:</strong> {{ player.first_name }}<br>
+                    <strong>Nom:</strong> {{ player.last_name }}
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutPlayers' player.id %}'">
+                        More information
+                    </button>
+                    </div>
+                </div>
+            <br>  
+            </div>
+        {% else %}
+            
+        {% endif %}
+    {% endfor %}
   </div>
 
   <p><a href="{% url 'logout' %}">Se déconnecter</a></p>

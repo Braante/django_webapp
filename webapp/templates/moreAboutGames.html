@@ -19,7 +19,7 @@
     <br><br>
 
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <div class="card text-white bg-primary border-light mb-3" style="width: 16rem;">
             <div class="card-body">
               <strong>Date:</strong> {{ gameData.date }}<br>
@@ -32,6 +32,28 @@
             </div>
           </div>
           <br>  
+        </div>
+        <div class="col-sm-3">
+            <div class="col-sm-3">
+                <div class="card text-white bg-primary border-light mb-3" style="width: 16rem;">
+                    <div class="card-body">
+                        <strong>Equipe:</strong> {{ gameData.home_team.full_name }}
+                        <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutTeams' gameData.home_team.id %}'">
+                            More information
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card text-white bg-primary border-light mb-3" style="width: 16rem;">
+                <div class="card-body">
+                    <strong>Equipe:</strong> {{ gameData.visitor_team.full_name }}
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutTeams' gameData.visitor_team.id %}'">
+                        More information
+                    </button>
+                </div>
+            </div>
         </div>
   </div>
 
