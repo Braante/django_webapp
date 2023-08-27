@@ -26,6 +26,7 @@ urlpatterns = [
     path("", views.players, name="players"),
     path('teams/', views.teams, name="teams"),
     path('games/', views.games, name="games"),
+    path('<int:playerId>/', views.playersData, name="moreAboutPlayers"),
     path("home/", include("django.contrib.auth.urls")),
     path("home/signup/", SignUpView.as_view(), name="signup"),
 ]

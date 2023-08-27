@@ -37,6 +37,9 @@
             <div class="card-body">
               <strong>Prénom:</strong> {{ player.first_name }}<br>
               <strong>Nom:</strong> {{ player.last_name }}
+              <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutPlayers' player.id %}'">
+                More information
+              </button>
             </div>
           </div>
           <br>  
