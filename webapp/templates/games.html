@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Players{% endblock %}</title>
+    <title>{% block title %}Games{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -17,32 +17,37 @@
     <br>
 
     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'players' %}'">
-      Player
+      Players
     </button>
 
     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'teams' %}'">
       Teams
     </button>
 
+    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'games' %}'">
+        Games
+    </button>
+
     <br><br>
 
     <div class="row">
-      {% for player in playersData.data %}
-        <div class="col-sm-2">
-          <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
-            <div class="card-body">
-              <strong>Prénom:</strong> {{ player.first_name }}<br>
-              <strong>Nom:</strong> {{ player.last_name }}
+        {% for game in gamesData.data %}
+          <div class="col-sm-2">
+            <div class="card text-white bg-primary border-light mb-3" style="width: 12rem;">
+              <div class="card-body">
+                <strong>Game:</strong> {{ game.home_team.abbreviation }} VS {{ game.visitor_team.abbreviation }} <br>
+                <strong>Date:</strong> {{ game.date }} <br>
+              </div>
             </div>
+            <br>  
           </div>
-          <br>  
-        </div>
-      {% endfor %}
-  </div>
-  {% if playersData.meta.next_page %}
-    <a href="?page={{ playersData.meta.current_page|add:-1 }}">Previous Page</a>
-    <a href="?page={{ playersData.meta.current_page|add:1 }}">Next Page</a>
-  {% endif %}
+        {% endfor %}        
+    </div>
+
+    {% if gamesData.meta.next_page %}
+        <a href="?page={{ gamesData.meta.current_page|add:-1 }}">Previous Page</a>
+        <a href="?page={{ gamesData.meta.current_page|add:1 }}">Next Page</a>
+    {% endif %}
 
     <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
     {% else %}
