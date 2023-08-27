@@ -36,7 +36,9 @@ def teamsData(request, teamId):
     response = f"https://www.balldontlie.io/api/v1/teams/{teamId}"
     rep = requests.get(response)
     teamData = rep.json()
-    return render(request, 'teams.html', {'teamData': teamData})
+    players_response = requests.get(f"https://www.balldontlie.io/api/v1/players?team_ids[]={teamId}")
+    playerData = players_response.json()
+    return render(request, 'moreAboutTeams.html', {'teamData': teamData, 'playerData': playerData})
 
 def games(request):
     page = request.GET.get('page', 1)
@@ -45,8 +47,8 @@ def games(request):
     gamesData = rep.json()
     return render(request, 'games.html', {'gamesData': gamesData})
 
-def teamsData(request, gameId):
+def gameData(request, gameId):
     response = f"https://www.balldontlie.io/api/v1/games/{gameId}"
     rep = requests.get(response)
     gameData = rep.json()
-    return render(request, 'games.html', {'gameData': gameData})
+    return render(request, 'moreAboutGames.html', {'gameData': gameData})

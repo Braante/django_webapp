@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}More about games{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    {% block content %}
+    {% if user.is_authenticated %}
+
+    <h1>Basketland</h1>
+    <br>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-sm-2">
+          <div class="card text-white bg-primary border-light mb-3" style="width: 16rem;">
+            <div class="card-body">
+              <strong>Date:</strong> {{ gameData.date }}<br>
+              <strong>Score équipe - home:</strong> {{ gameData.home_team_score }}<br>
+              <strong>Score équipe - visiteur:</strong> {{ gameData.visitor_team_score }}<br>
+              <strong>Saison:</strong> {{ gameData.season }}<br>
+              <strong>Période:</strong> {{ gameData.period }}<br>
+              <strong>Status:</strong> {{ gameData.status }}<br>
+              <strong>Temps:</strong> {{ gameData.time }}<br>
+            </div>
+          </div>
+          <br>  
+        </div>
+  </div>
+
+  <p><a href="{% url 'logout' %}">Se déconnecter</a></p>
+  {% else %}
+    <p>Tu n'es pas connecté. Tu ne peux pas continuer sans être connecté.</p>
+    <a href="{% url 'login' %}">Se connecter</a>
+    <a href="{% url 'signup' %}">S'inscrire</a>
+  {% endif %}
+
+  {% endblock %}
+</body>
+</html>

@@ -37,6 +37,9 @@
               <div class="card-body">
                 <strong>Game:</strong> {{ game.home_team.abbreviation }} VS {{ game.visitor_team.abbreviation }} <br>
                 <strong>Date:</strong> {{ game.date }} <br>
+                <button type="button" class="btn btn-warning" onclick="location.href='{% url 'moreAboutGames' game.id %}'">
+                  More information
+                </button>
               </div>
             </div>
             <br>  

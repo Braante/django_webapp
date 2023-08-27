@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic.base import TemplateView
 
 from home import views
@@ -27,6 +27,8 @@ urlpatterns = [
     path('teams/', views.teams, name="teams"),
     path('games/', views.games, name="games"),
     path('<int:playerId>/', views.playersData, name="moreAboutPlayers"),
+    path('teams/<int:teamId>/', views.teamsData, name="moreAboutTeams"),
+    path('games/<int:gameId>/', views.gameData, name="moreAboutGames"),
     path("home/", include("django.contrib.auth.urls")),
     path("home/signup/", SignUpView.as_view(), name="signup"),
 ]
